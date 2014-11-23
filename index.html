@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <title>日新查成绩</title>
+    <link href="http://cdn.bootcss.com/bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body ng-controller="ScoreCtrl">
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+
+                    <legend>日新服务<small>查成绩</small></legend>
+                    <div class="span12 input-append">
+                        <input ng-model="stuId" id="stuId" type="number" class="span8" placeholder="请输入你的学号">
+                        <button ng-click="scoreSearch()" id="idSubmit" type="submit" class="btn btn-primary">查成绩</button>
+                    </div>
+                    <div class="help-block hide">请检查一下学号是否正确！</div>
+
+
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <ul id="term" class="nav nav-pills">
+                <li class="active initTerm"><a href="#">学期</a></li>
+                <li ng-repeat="term in terms | orderBy:reverse" ng-click="updateTerm($event.target)">
+                    <a href="#">{{term}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div id="score" class="span10 offset1">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>课程</th>
+                        <th>成绩</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in datas | filter: term">
+                        <td class="span9">{{data.Course}}</td>
+                        <td class="span3">{{data.Score}}</td>
+                    </tr>
+                    <tr>
+                        <td class="span9">{{data.Course}}</td>
+                        <td class="span3">{{data.Score}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.angularjs.org/1.2.12/angular.min.js"></script>
+    <script src="jquery-2.1.0.min.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>
